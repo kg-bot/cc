@@ -1,0 +1,21 @@
+#convert_value,
+#currency_in,
+#currency_out {
+	display: inline-block;
+	width: auto;
+	margin: 15px;
+}
+
+#convert_value {
+	margin: 0;
+	width: 100px;
+}
+#switch_currency {
+	cursor: pointer;
+}
+
+@media (max-width: 500px){
+	#convert_value {
+		width: 40px;
+	}
+}
