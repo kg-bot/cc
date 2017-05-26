@@ -47,7 +47,7 @@ class Application_Model_RatesMapper
 		// First we need to check if rates are updated in the last hour
 		$row = $this->_db_table->fetchRow();
 		$updated = strtotime($row->updated);
-		if(time() - $updated < 60){
+		if(time() - $updated > 3600){
 			$this->updateRates();
 		}
 		// We need to find rate for desired currency

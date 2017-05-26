@@ -1,37 +1,39 @@
-<div class="container">
-    <div class="row text-center">
-        <div id="converter" class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
-            <div id="history"></div>
-            <div id="controls">
-                <input type="text" id="convert_value" class="form-control">
-                <select id="currency_in" class="form-control">
-                <?php
-                    if(!is_string($this->all_currencies)) {
-                        foreach($this->all_currencies as $currency) {
-                            $currency = $currency['currency'];
-                            echo "<option value='{$currency}'>{$currency}</option>";
+<div class="wrapper">
+    <div class="container">
+        <div class="row text-center">
+            <div id="converter" class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+                <div id="history"></div>
+                <div id="controls">
+                    <input type="number" id="convert_value" class="form-control" value=1>
+                    <select id="currency_in" class="form-control">
+                    <?php
+                        if(!is_string($this->all_currencies)) {
+                            foreach($this->all_currencies as $currency) {
+                                $currency = $currency['currency'];
+                                echo "<option value='{$currency}'>{$currency}</option>";
+                            }
                         }
-                    }
-                    else {
-                        echo "<option value='error'>" .$this->all_currencies ."</option>";
-                    }
-                ?>
-                </select>
-                <span id="switch_currency" class="fa fa-refresh"></span>
-                <select id="currency_out" class="form-control">
-                <?php
-                    if(!is_string($this->all_currencies)) {
-                        foreach($this->all_currencies as $currency) {
-                            $currency = $currency['currency'];
-                            echo "<option value='{$currency}'>{$currency}</option>";
+                        else {
+                            echo "<option value='error'>API error, please report to admins</option>";
                         }
-                    }
-                    else {
-                        echo "<option value='error'>" .$this->all_currencies ."</option>";
-                    }
-                ?>
-                </select>
-                <input class="btn btn-primary" type="submit" value="Convert" id="convert">
+                    ?>
+                    </select>
+                    <span id="switch_currency" class="fa fa-refresh"></span>
+                    <select id="currency_out" class="form-control">
+                    <?php
+                        if(!is_string($this->all_currencies)) {
+                            foreach($this->all_currencies as $currency) {
+                                $currency = $currency['currency'];
+                                echo "<option value='{$currency}'>{$currency}</option>";
+                            }
+                        }
+                        else {
+                            echo "<option value='error'>API error, please report to admins</option>";
+                        }
+                    ?>
+                    </select>
+                    <input class="btn btn-primary" type="submit" value="Convert" id="convert">
+                </div>
             </div>
         </div>
     </div>

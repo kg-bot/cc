@@ -14,8 +14,25 @@
 	cursor: pointer;
 }
 
-@media (max-width: 500px){
+.history-row {
+	display: block;
+	border-top-color: #bdbdbd;
+	border-top-style: solid;
+	border-top-width: 1px;
+	font-size: 3em;
+	color: #e0e0e0;
+}
+.wrapper {
+	position: absolute;
+	width: 100%;
+	top: 45%;
+}
+
+@media all and (max-width: 500px){
 	#convert_value {
 		width: 40px;
+	}
+	.history-row {
+		font-size: 2em;
 	}
 }
