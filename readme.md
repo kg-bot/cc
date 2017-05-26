@@ -4,7 +4,7 @@ Free online tool used to convert from one currency to another.
 
 ### Requirements
 
- 1. [Phinx](https://github.com/robmorgan/phinx) for database migretions, **will be installed with composer**
+ 1. [Phinx](https://github.com/robmorgan/phinx) for database migrations, **will be installed with composer**
  2. [Composer](https://getcomposer.org/) as package manager
  3. [GIT](https://git-scm.com/) - **optional** software
 
@@ -40,4 +40,3 @@ For gzip compression and caching to work you must enable following Apache module
  * mod_headers
 
 If you don't use Apache please consult your web server software provider documentation to how to enable those features.
-  
