@@ -18,7 +18,7 @@ Second, change working directory to application and use `composer install` to in
 
 Third, open `/phinx.yml` and edit options for `development` entry, set them to reflect your MySQL settings.
 
-After you have succesfully completed previous step open `/application/configs/application.ini` and change following entries
+After you have successfully completed previous step open `/application/configs/application.ini` and change following entries
  ```
  resources.db.params.dbname = "blazing_boost"
  resources.db.params.username = "example_user"
@@ -42,4 +42,3 @@ For gzip compression and caching to work you must enable following Apache module
  * mod_headers
 
 If you don't use Apache please consult your web server software provider documentation to how to enable those features.
-  
