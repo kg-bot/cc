@@ -18,8 +18,8 @@ environments:
         adapter: mysql
         host: localhost
         name: blazing_boost
-        user: root
-        pass: 'nino1994'
+        user: example_user
+        pass: 'example_password'
         port: 3306
         charset: utf8
 
