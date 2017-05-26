@@ -14,7 +14,9 @@ Before you begin please ensure that you have required technologies installed and
 
 Use GIT to pull this repository into your desired server directory or if you don't have or don't know how to use GIT download this repo manually.
 
-Second, open `/phinx.yml` and edit options for `development` entry, set them to reflect your MySQL settings.
+Second, change working directory to application and use `composer install` to install project dependencies.
+
+Third, open `/phinx.yml` and edit options for `development` entry, set them to reflect your MySQL settings.
 
 After you have succesfully completed previous step open `/application/configs/application.ini` and change following entries
  ```
@@ -40,3 +42,4 @@ For gzip compression and caching to work you must enable following Apache module
  * mod_headers
 
 If you don't use Apache please consult your web server software provider documentation to how to enable those features.
+  
