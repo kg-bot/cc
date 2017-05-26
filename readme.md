@@ -36,9 +36,10 @@ You can start using it, point your browser to your application domain.
 We'll assume that you use Apache web server.
 
 For gzip compression and caching to work you must enable following Apache modules:
- * mod_expires
- * mod_gzip
- * mod_deflate
- * mod_headers
+ - mod_expires
+ - mod_gzip
+ - mod_deflate
+ - mod_headers
 
 If you don't use Apache please consult your web server software provider documentation to how to enable those features.
+  
