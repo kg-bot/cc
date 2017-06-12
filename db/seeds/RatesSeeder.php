@@ -15,11 +15,11 @@ class RatesSeeder extends AbstractSeed
     public function run()
     {
         // set API Endpoint and access key (and any options of your choice)
-        $endpoint = 'live';
+        $endpoint   = 'live';
         $access_key = '012900ca6a975aa588e6e7a833c51f60';
 
         // Initialize CURL:
-        $ch = curl_init('http://apilayer.net/api/'.$endpoint.'?access_key='.$access_key.'');
+        $ch = curl_init('http://apilayer.net/api/' . $endpoint . '?access_key=' . $access_key . '');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         // Store the data:
@@ -33,14 +33,14 @@ class RatesSeeder extends AbstractSeed
         $data = [];
 
         // We must iterate over quotes and add them to database
-        foreach($exchangeRates['quotes'] as $currency => $rate){
+        foreach ($exchangeRates['quotes'] as $currency => $rate) {
             $currency = explode('USD', $currency, 2);
             $currency = $currency[1];
 
             // This reperesents table row
             $info = [
                 'currency' => $currency,
-                'rate' => $rate,
+                'rate'     => $rate,
             ];
 
             // We push every row to $data
@@ -51,6 +51,6 @@ class RatesSeeder extends AbstractSeed
         // Save new rates to database
         $rates = $this->table('rates');
         $rates->insert($data)
-              ->save();
+            ->save();
     }
 }

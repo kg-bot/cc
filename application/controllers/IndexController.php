@@ -15,14 +15,11 @@ class IndexController extends Zend_Controller_Action
         // Get all currencies
         $currencies = $mapper->getAllCurrencies();
 
-        if($currencies) {
-        	$this->view->all_currencies = $currencies;
-        }
-        else {
-        	$this->view->all_currencies = "ERROR";
+        if ($currencies) {
+            $this->view->all_currencies = $currencies;
+        } else {
+            $this->view->all_currencies = "ERROR";
         }
     }
 
-
 }
-

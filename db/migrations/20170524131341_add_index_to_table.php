@@ -29,6 +29,6 @@ class AddIndexToTable extends AbstractMigration
     {
         $rates = $this->table("rates");
         $rates->addIndex(array("currency"))
-              ->save();
+            ->save();
     }
 }

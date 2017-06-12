@@ -27,10 +27,10 @@ class CreateRatesTable extends AbstractMigration
      */
     public function change()
     {
-    	$rates = $this->table("rates");
-    	$rates->addColumn("updated", "timestamp", array("default" => CURRENT_TIMESTAMP))
-              ->addColumn("rate", "decimal")
-              ->addColumn("currency", "string", array("limit" => 3))
-              ->create();
+        $rates = $this->table("rates");
+        $rates->addColumn("updated", "timestamp", array("default" => CURRENT_TIMESTAMP))
+            ->addColumn("rate", "decimal")
+            ->addColumn("currency", "string", array("limit" => 3))
+            ->create();
     }
 }
