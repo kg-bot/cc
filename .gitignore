@@ -1,2 +1,5 @@
-vendor/*
+vendor/
+cgi-bin/
+docs/
+tests/
 *.sublime-*

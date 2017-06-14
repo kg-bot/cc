@@ -74,21 +74,6 @@ class Application_Model_RatesMapper
      */
     public function updateRates()
     {
-        // set API Endpoint and access key (and any options of your choice)
-        $endpoint   = 'live';
-        $access_key = '012900ca6a975aa588e6e7a833c51f60';
-
-        // Initialize CURL:
-        $ch = curl_init('http://apilayer.net/api/' . $endpoint . '?access_key=' . $access_key . '');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        // Store the data:
-        $json = curl_exec($ch);
-        curl_close($ch);
-
-        // Decode JSON response:
-        $exchangeRates = json_decode($json, true);
-
         // First we clear (truncate) existing data
         $this->_db_table->getAdapter()->query('TRUNCATE TABLE ' . $this->_db_table->info(Zend_Db_Table::NAME));
 
