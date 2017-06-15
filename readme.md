@@ -17,9 +17,10 @@ Use GIT to pull this repository into your desired server directory or if you don
 Second, change working directory to application and use `composer install` to install project dependencies.
 
 Before you can use application you must start Redis server with default parameters. 
-Go to your terminal and type `redis-server`.    NOTE! Please make sure you have `{redis_installation_path}/src` in your path.
+Go to your terminal and type `redis-server`.   
+NOTE! Please make sure you have `{redis_installation_path}/src` in your path.
 
-Still in your application root folder execute `php application/cronjobs/UpdateRates.php`.
+Still in your application root folder execute `php application/cronjobs/UpdateRates.php`.   
 Run `crontab -e` and add `0 * * * * php {path_to_application}/application/cronjobs/UpdateRates.php >/dev/null 2>&1` to it,
 this will update rates every hour.
 
