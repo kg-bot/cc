@@ -4,35 +4,11 @@
             <div id="converter" class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
                 <div id="history"></div>
                 <div id="controls">
-                    <input type="number" id="convert_value" class="form-control" value=1>
-                    <select id="currency_in" class="form-control">
                     <?php
-                        if(!is_string($this->all_currencies)) {
-                            foreach($this->all_currencies as $currency) {
-                                $currency = $currency['currency'];
-                                echo "<option value='{$currency}'>{$currency}</option>";
-                            }
-                        }
-                        else {
-                            echo "<option value='error'>API error, please report to admins</option>";
+                        if (!empty($this->form)) {
+                            echo $this->form;
                         }
                     ?>
-                    </select>
-                    <span id="switch_currency" class="fa fa-refresh"></span>
-                    <select id="currency_out" class="form-control">
-                    <?php
-                        if(!is_string($this->all_currencies)) {
-                            foreach($this->all_currencies as $currency) {
-                                $currency = $currency['currency'];
-                                echo "<option value='{$currency}'>{$currency}</option>";
-                            }
-                        }
-                        else {
-                            echo "<option value='error'>API error, please report to admins</option>";
-                        }
-                    ?>
-                    </select>
-                    <input class="btn btn-primary" type="submit" value="Convert" id="convert">
                 </div>
             </div>
         </div>
@@ -41,8 +17,7 @@
 <script>
     var allowed_currencies = <?php
         $currencies = [];
-        foreach($this->all_currencies as $currency) {
-            $currency = $currency['currency'];
+        foreach($this->allCurrencies as $currency => $rateObject) {
             array_push($currencies, $currency);
         }
         echo json_encode($currencies);

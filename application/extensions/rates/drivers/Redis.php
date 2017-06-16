@@ -1,8 +1,10 @@
 <?php
-namespace App\Extensions\Rates\Drivers;
+namespace App\extensions\rates\drivers;
 
-use App\Extensions\Rates\Interfaces\RedisInterface;
-use App\Extensions\Rates\Interfaces\RatesCollectionInterface;
+require __DIR__ . '/../../../../vendor/autoload.php';
+
+use App\extensions\rates\interfaces\RedisInterface;
+use App\extensions\rates\interfaces\RatesCollectionInterface;
 
 class Redis implements RedisInterface
 {
@@ -21,9 +23,9 @@ class Redis implements RedisInterface
 
     public function find($currency)
     {
-        $rates = $this->all->getRates();
+        $rates = $this->all()->getRates();
 
-        return $rate[$currency];
+        return $rates[$currency];
     }
 
     public function save(RatesCollectionInterface $rates)

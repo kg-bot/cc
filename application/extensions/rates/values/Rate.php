@@ -1,7 +1,7 @@
 <?php
-namespace App\Extensions\Rates\Values;
+namespace App\extensions\rates\values;
 
-use App\Extensions\Rates\Interfaces\RateInterface;
+use App\extensions\rates\interfaces\RateInterface;
 
 class Rate implements RateInterface
 {

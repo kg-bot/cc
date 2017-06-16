@@ -3,6 +3,6 @@ namespace App\Cronjobs;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use App\Extensions\Rates\UpdateRates;
+use App\extensions\rates\UpdateRates;
 
 $updateRates = new UpdateRates();

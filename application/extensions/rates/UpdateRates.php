@@ -1,12 +1,12 @@
 <?php
-namespace App\Extensions\Rates;
+namespace App\extensions\rates;
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
-use App\Extensions\Rates\Interfaces\UpdateRatesInterface;
-use App\Extensions\Rates\Values\Rate;
-use App\Extensions\Rates\Values\RatesCollection;
-use App\Extensions\Rates\Drivers\Redis;
+use App\extensions\rates\interfaces\UpdateRatesInterface;
+use App\extensions\rates\values\Rate;
+use App\extensions\rates\values\RatesCollection;
+use App\extensions\rates\drivers\Redis;
 
 class UpdateRates implements UpdateRatesInterface
 {

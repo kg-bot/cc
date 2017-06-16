@@ -1,24 +1,29 @@
 <?php
 
+use App\extensions\rates\drivers\Redis;
+use App\Extensions\Rates\Interfaces\RatesCollectionInterface;
+use App\forms\Convert;
+
 class IndexController extends Zend_Controller_Action
 {
 
+    protected $form;
+
     public function init()
     {
-        /* Initialize action controller here */
+        $this->form = new Application_Form_Convert();
     }
 
     public function indexAction()
     {
-        $mapper = new Application_Model_RatesMapper();
 
-        // Get all currencies
-        $currencies = $mapper->getAllCurrencies();
+        $redis = new Redis();
+        // Get all currencies, returns RatesCollection
+        $currencies = $redis->all();
 
-        if ($currencies) {
-            $this->view->all_currencies = $currencies;
-        } else {
-            $this->view->all_currencies = "ERROR";
+        if ($currencies instanceof RatesCollectionInterface) {
+            $this->view->allCurrencies = $currencies->getRates();
+            $this->view->form = $this->form;
         }
     }
 

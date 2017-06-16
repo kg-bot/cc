@@ -1,5 +1,5 @@
 <?php
-namespace App\Extensions\Rates\Interfaces;
+namespace App\extensions\rates\interfaces;
 
 interface RedisInterface
 {

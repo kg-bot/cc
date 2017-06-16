@@ -1,5 +1,9 @@
 <?php
 
+use App\forms\Convert;
+use App\extensions\rates\drivers\Redis;
+use App\extensions\converter\Converter;
+
 class ConvertController extends Zend_Controller_Action
 {
 
@@ -21,40 +25,23 @@ class ConvertController extends Zend_Controller_Action
      */
     public function indexAction()
     {
-        if ($this->getRequest()->isXmlHttpRequest()) {
+        if (!$this->getRequest()->isXmlHttpRequest()) {
+            $form = new Application_Form_Convert();
             if ($this->getRequest()->isPost()) {
-                $post_amount = $this->getRequest()->getPost("amount");
-                if (is_numeric($post_amount)) {
-                    $post_currencyIn  = $this->getRequest()->getPost("in");
-                    $post_currencyOut = $this->getRequest()->getPost("out");
+                if ($form->isValid($this->getRequest()->getPost())) {
+                    $post = $this->getRequest()->getPost();
 
-                    $mapper = new Application_Model_RatesMapper();
+                    $redis = new Redis();
 
-                    // We request row from rates table for $in currency
-                    $in_rate = $mapper->getRate($post_currencyIn);
-                    // We need to check if desired currency is presented in database
-                    if ($in_rate instanceof Application_Model_Rates) {
-                        $in_rate = $in_rate->rate;
-                        // Now we need to get rate for desired currency
-                        $out_rate = $mapper->getRate($post_currencyOut);
-                        // We need to check if desired currency is presented in database
-                        if ($out_rate instanceof Application_Model_Rates) {
-                            $out_rate = $out_rate->rate;
-                            // Now we need to actually convert
-                            $base = $post_amount / $in_rate;
+                    $from = $redis->find($post['currency_in']);
+                    $to = $redis->find($post['currency_out']);
+                    $amount = floatval($post['amount']);
 
-                            // This is our end result and we need to return this to user
-                            $result = $base * $out_rate;
+                    $converter = (new Converter())->convert($from, $to, $amount);
 
-                            $responseArray = ['result' => round($result, 2)];
-                        } else {
-                            $responseArray = ['error' => "Your desired currency {$post_currencyOut} is not supported."];
-                        }
-                    } else {
-                        $responseArray = ['error' => "Your base currency {$post_currencyIn} is not supported"];
-                    }
+                    $responseArray = ['convert' => $converter];
                 } else {
-                    $responseArray = ['error' => "Amount must be number."];
+                    $responseArray = ['error' => "Only numbers are allowed for amount."];
                 }
             } else {
                 $responseArray = ['error' => "You must request this page over POST method."];

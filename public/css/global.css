@@ -28,6 +28,11 @@
     top: 45%;
 }
 
+#convert_form dd,
+#convert_form dt {
+    display: inline-block;
+}
+
 @media all and (max-width: 500px) {
     #convert_value {
         width: 40px;
