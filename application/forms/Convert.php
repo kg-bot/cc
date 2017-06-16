@@ -15,7 +15,7 @@ class Application_Form_Convert extends \Zend_Form
                 'id'            =>  'convert_value',
                 'class'         =>  'form-control',
                 'required'      =>  true,
-                'validators'    =>  array('Digits')
+                'validators'    =>  array('Float')
             ])
             ->addElement(new SelectElement('currency_in'))
             ->addElement(new SelectElement('currency_out'))

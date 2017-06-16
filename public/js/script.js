@@ -58,11 +58,7 @@ var Converter = (function(){
     */
     function private_setAmount(selector)
     {
-        var amount = $(selector).val();
-        // We only allow numbers for our amount
-        if(!isNaN(amount)) {
-            private_amount = amount;
-        }
+        private_amount = parseFloat($(selector).val());
     }
 
     function private_getAmount()
@@ -72,7 +68,7 @@ var Converter = (function(){
 
     function private_updateHistory(result)
     {
-        var newRow = "<span class='history-row'>" + private_currencyIn + " " + private_amount + " -> " + result + " " + private_currencyOut + "</span>";
+        var newRow = "<span class='history-row'>" + private_currencyIn + " " + private_amount + " = " + result + " " + private_currencyOut + "</span>";
 
         if(private_history.length >= 5) {
             private_history.shift();
@@ -104,7 +100,7 @@ var Converter = (function(){
             if($.inArray(currencyIn, allowed_currencies) > -1) {
                 if($.inArray(currencyOut, allowed_currencies) > -1) {
                     $.ajax({
-                        url: "convert/index",
+                        url: "/convert/index",
                         method: "post",
                         dataType: "json",
                         data: {"amount": amount, "in": currencyIn, "out": currencyOut},
@@ -180,7 +176,8 @@ $(function(){
             Converter.public_setAmount(this);
         });
 
-    $("#convert").click(function(){
+    $("#convert_form").submit(function(event){
+        event.preventDefault();
         Converter.public_setCurrencies("#currency_in", "#currency_out");
         Converter.public_convert();
     });

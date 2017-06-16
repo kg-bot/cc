@@ -25,21 +25,21 @@ class ConvertController extends Zend_Controller_Action
      */
     public function indexAction()
     {
-        if (!$this->getRequest()->isXmlHttpRequest()) {
-            $form = new Application_Form_Convert();
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            $form = new \Zend_Form();
             if ($this->getRequest()->isPost()) {
                 if ($form->isValid($this->getRequest()->getPost())) {
                     $post = $this->getRequest()->getPost();
 
                     $redis = new Redis();
 
-                    $from = $redis->find($post['currency_in']);
-                    $to = $redis->find($post['currency_out']);
+                    $from = $redis->find($post['in']);
+                    $to = $redis->find($post['out']);
                     $amount = floatval($post['amount']);
 
                     $converter = (new Converter())->convert($from, $to, $amount);
 
-                    $responseArray = ['convert' => $converter];
+                    $responseArray = ['result' => round($converter, 2)];
                 } else {
                     $responseArray = ['error' => "Only numbers are allowed for amount."];
                 }

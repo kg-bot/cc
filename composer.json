@@ -1,7 +1,6 @@
 {
 	"require": {
         "zendframework/zendframework1": "1.*",
-        "robmorgan/phinx": "*",
         "predis/predis": "*"
 	},
     "autoload": {
